@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Payment Section</title>
+
+ <style>
+  * {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   font-family: sans-serif;
+  }
+
+  body {
+   background: #f5f5f5;
+   padding: 50px;
+  }
+
+  /* SECTION */
+  .section {
+   max-width: 1200px;
+   margin: auto;
+  }
+
+  /* TOP TEXT */
+  .top {
+   text-align: center;
+   margin-bottom: 40px;
+  }
+
+  .top h1 {
+   font-size: 32px;
+   margin-bottom: 10px;
+  }
+
+  /* MAIN CONTAINER */
+  .container {
+   display: flex;
+   gap: 20px;
+  }
+
+  /* LEFT SIDE */
+  .left {
+   flex: 2;
+   background: #0f5c57;
+   color: white;
+   padding: 40px;
+   border-radius: 20px;
+   position: relative;
+   overflow: hidden;
+  }
+
+  .left h2 {
+   font-size: 50px;
+   color: #f4c400;
+   margin-bottom: 20px;
+  }
+
+  .left p {
+   font-size: 14px;
+   line-height: 1.6;
+   max-width: 300px;
+  }
+
+  .left button {
+   margin-top: 20px;
+   padding: 10px 20px;
+   background: #f4c400;
+   border: none;
+   border-radius: 20px;
+   cursor: pointer;
+  }
+
+  .left img {
+   position: absolute;
+   right: 0;
+   bottom: 0;
+   width: 250px;
+  }
+
+  .right {
+  flex: 3;
+  display: flex;
+  height: 420px;
+}
+
+/* TABS */
+.tab {
+  flex: 1;
+  border-radius: 50px; /* pill shape */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+
+/* ALTERNATING COLORS */
+.tab:nth-child(odd) {
+  background: #0f5c57; /* green */
+  color: white;
+}
+
+.tab:nth-child(even) {
+  background: #f4c400; /* yellow */
+  color: black;
+}
+
+/* ACTIVE */
+.tab.active {
+  flex: 4;
+}
+
+/* REMOVE GAP */
+.tab {
+  margin: 0;
+}
+
+/* ICON */
+.icon {
+  position: absolute;
+  bottom: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ICON COLORS BASED ON CARD */
+.tab:nth-child(odd) .icon {
+  background: #f4c400;
+  color: black;
+}
+
+.tab:nth-child(even) .icon {
+  background: #0f5c57;
+  color: white;
+}
+
+/* ACTIVE TEXT */
+.tab.active span {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+  /* ACTIVE CONTENT */
+  .content {
+   display: none;
+   position: absolute;
+   left: 30px;
+   top: 30px;
+   max-width: 200px;
+  }
+
+  .tab.active .content {
+   display: block;
+  }
+
+  .tab.active .icon {
+   background: #f4c400;
+   color: black;
+  }
+ </style>
+</head>
+
+<body>
+
+ <section class="section">
+
+  <div class="top">
+   <h1>Enjoy a Better Payment Experience</h1>
+   <p>Modern digital banking with smooth experience</p>
+  </div>
+
+  <div class="container">
+
+   <!-- LEFT -->
+   <div class="left">
+    <h2>Send Money</h2>
+    <p>
+     Start your financial journey with simple steps.
+     Manage everything easily and securely.
+    </p>
+    <button>Read More</button>
+
+    <!-- replace with your image -->
+    <img src="https://i.imgur.com/2DhmtJ4.png" alt="">
+   </div>
+
+   <!-- RIGHT -->
+   <div class="right">
+
+    <div class="tab active">
+     <span>Mobile Load</span>
+     <div class="icon">−</div>
+     <div class="content">
+      Easy mobile recharge anytime.
+     </div>
+    </div>
+
+    <div class="tab">
+     <span>Aik Deen</span>
+     <div class="icon">+</div>
+     <div class="content">
+      Short term savings solution.
+     </div>
+    </div>
+
+    <div class="tab">
+     <span>Cards</span>
+     <div class="icon">+</div>
+     <div class="content">
+      Manage your debit cards easily.
+     </div>
+    </div>
+
+    <div class="tab">
+     <span>Bill Payments</span>
+     <div class="icon">+</div>
+     <div class="content">
+      Pay bills quickly and securely.
+     </div>
+    </div>
+
+    <div class="tab">
+     <span>Other Payments</span>
+     <div class="icon">+</div>
+     <div class="content">
+      Multiple payment options.
+     </div>
+    </div>
+
+    <div class="tab">
+     <span>Takaful</span>
+     <div class="icon">+</div>
+     <div class="content">
+      Insurance made simple.
+     </div>
+    </div>
+
+    <div class="tab">
+     <span>Mini App</span>
+     <div class="icon">+</div>
+     <div class="content">
+      Access mini apps easily.
+     </div>
+    </div>
+
+   </div>
+
+  </div>
+
+ </section>
+
+ <script>
+  const tabs = document.querySelectorAll(".tab");
+
+  tabs.forEach(tab => {
+   tab.addEventListener("click", () => {
+
+    tabs.forEach(t => {
+     t.classList.remove("active");
+     t.querySelector(".icon").textContent = "+";
+    });
+
+    tab.classList.add("active");
+    tab.querySelector(".icon").textContent = "−";
+
+   });
+  });
+ </script>
+
+</body>
+
+</html>

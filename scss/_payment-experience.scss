@@ -1,0 +1,490 @@
+// Payment Experience Section
+// Color Variables
+$color-primary: #065258;
+$color-accent: #F5CE1A;
+$color-white: #ffffff;
+$color-text: #333333;
+$color-text-light: #666666;
+
+// Breakpoints
+$bp-tablet: 768px;
+$bp-desktop: 1024px;
+
+.payment-experience {
+  position: relative;
+  padding: 60px 0;
+  background: $color-white;
+
+  @media (min-width: $bp-desktop) {
+    padding: 100px 0;
+  }
+
+  .container {
+    position: relative;
+  }
+}
+
+// Header Section (moved to bottom)
+.payment-experience__header {
+  text-align: center;
+  margin-bottom: 60px;
+
+  @media (min-width: $bp-desktop) {
+    margin-bottom: 80px;
+  }
+}
+
+.section-title {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: $color-text;
+  margin-bottom: 20px;
+  font-family: "Outfit", sans-serif;
+
+  @media (min-width: $bp-tablet) {
+    font-size: 36px;
+    margin-bottom: 25px;
+  }
+
+  @media (min-width: $bp-desktop) {
+    font-size: 48px;
+    margin-bottom: 30px;
+  }
+}
+
+.section-subtitle {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: $color-text-light;
+  max-width: 700px;
+  margin: 0 auto;
+
+  @media (min-width: $bp-tablet) {
+    font-size: 16px;
+    max-width: 800px;
+  }
+}
+
+// Main Wrapper
+.payment-experience__wrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  align-items: flex-start;
+
+  @media (min-width: $bp-desktop) {
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+  }
+}
+
+// Left Content Section
+.payment-experience__content {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+
+  @media (min-width: $bp-desktop) {
+    gap: 40px;
+  }
+}
+
+.payment-experience__text-block {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.payment-experience__title {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: $color-primary;
+  margin: 0;
+  font-family: "Outfit", sans-serif;
+
+  @media (min-width: $bp-tablet) {
+    font-size: 40px;
+  }
+
+  @media (min-width: $bp-desktop) {
+    font-size: 48px;
+  }
+}
+
+.payment-experience__description {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.7;
+  color: $color-text-light;
+  margin: 0;
+  padding: 0;
+
+  @media (min-width: $bp-tablet) {
+    font-size: 15px;
+  }
+
+  &:last-of-type {
+    margin-bottom: 10px;
+  }
+}
+
+.payment-experience__btn {
+  align-self: flex-start;
+  padding: 12px 30px;
+  background: $color-accent;
+  border: none;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: 600;
+  color: $color-primary;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: "Outfit", sans-serif;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba($color-accent, 0.3);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+.payment-experience__image {
+  width: 100%;
+  max-width: 100%;
+  text-align: center;
+
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+}
+
+// Cards Container
+.payment-experience__cards-container {
+  position: relative;
+  height: 450px;
+  perspective: 1000px;
+
+  @media (min-width: $bp-tablet) {
+    height: 500px;
+  }
+
+  @media (min-width: $bp-desktop) {
+    height: 550px;
+  }
+}
+
+// Cards Stack
+.cards-stack {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+// Individual Card Items
+.card-item {
+  position: absolute;
+  width: 100%;
+  height: 100px;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transform-origin: right center;
+  top: 0;
+  right: 0;
+
+  @media (min-width: $bp-tablet) {
+    height: 120px;
+    border-radius: 20px;
+  }
+
+  @media (min-width: $bp-desktop) {
+    height: 140px;
+    border-radius: 24px;
+  }
+
+  &.card-item--active {
+    .card-item__inner {
+      &::after {
+        opacity: 1;
+      }
+    }
+  }
+
+  // Initial positioning for each card
+  &.card-item--1 {
+    z-index: 7;
+    right: 0;
+    top: 0;
+  }
+
+  &.card-item--2 {
+    z-index: 6;
+    right: -30px;
+    top: 15px;
+    transform: scale(0.95) translateX(40px);
+
+    @media (min-width: $bp-tablet) {
+      right: -40px;
+      top: 18px;
+      transform: scale(0.93) translateX(50px);
+    }
+
+    @media (min-width: $bp-desktop) {
+      right: -50px;
+      top: 20px;
+      transform: scale(0.92) translateX(60px);
+    }
+  }
+
+  &.card-item--3 {
+    z-index: 5;
+    right: -60px;
+    top: 30px;
+    transform: scale(0.90) translateX(80px);
+
+    @media (min-width: $bp-tablet) {
+      right: -80px;
+      top: 36px;
+      transform: scale(0.88) translateX(100px);
+    }
+
+    @media (min-width: $bp-desktop) {
+      right: -100px;
+      top: 40px;
+      transform: scale(0.86) translateX(120px);
+    }
+  }
+
+  &.card-item--4 {
+    z-index: 4;
+    right: -90px;
+    top: 45px;
+    transform: scale(0.85) translateX(120px);
+
+    @media (min-width: $bp-tablet) {
+      right: -120px;
+      top: 54px;
+      transform: scale(0.83) translateX(150px);
+    }
+
+    @media (min-width: $bp-desktop) {
+      right: -150px;
+      top: 60px;
+      transform: scale(0.81) translateX(180px);
+    }
+  }
+
+  &.card-item--5 {
+    z-index: 3;
+    right: -120px;
+    top: 60px;
+    transform: scale(0.80) translateX(160px);
+
+    @media (min-width: $bp-tablet) {
+      right: -160px;
+      top: 72px;
+      transform: scale(0.78) translateX(200px);
+    }
+
+    @media (min-width: $bp-desktop) {
+      right: -200px;
+      top: 80px;
+      transform: scale(0.76) translateX(240px);
+    }
+  }
+
+  &.card-item--6 {
+    z-index: 2;
+    right: -150px;
+    top: 75px;
+    transform: scale(0.75) translateX(200px);
+
+    @media (min-width: $bp-tablet) {
+      right: -200px;
+      top: 90px;
+      transform: scale(0.73) translateX(250px);
+    }
+
+    @media (min-width: $bp-desktop) {
+      right: -250px;
+      top: 100px;
+      transform: scale(0.71) translateX(300px);
+    }
+  }
+
+  &.card-item--7 {
+    z-index: 1;
+    right: -180px;
+    top: 90px;
+    transform: scale(0.70) translateX(240px);
+
+    @media (min-width: $bp-tablet) {
+      right: -240px;
+      top: 108px;
+      transform: scale(0.68) translateX(300px);
+    }
+
+    @media (min-width: $bp-desktop) {
+      right: -300px;
+      top: 120px;
+      transform: scale(0.66) translateX(360px);
+    }
+  }
+
+  // Active state positions
+  &.card-item--active {
+    right: 0 !important;
+    top: 0 !important;
+    transform: scale(1) translateX(0) !important;
+    z-index: 100 !important;
+  }
+
+  // Previous active card collapsed state
+  &.card-item--collapsed {
+    right: -200px !important;
+    transform: scale(0.65) translateX(320px) !important;
+  }
+}
+
+// Card Inner
+.card-item__inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 25px;
+  border-radius: 16px;
+  overflow: hidden;
+  font-family: "Outfit", sans-serif;
+
+  @media (min-width: $bp-tablet) {
+    padding: 0 30px;
+    border-radius: 20px;
+  }
+
+  @media (min-width: $bp-desktop) {
+    padding: 0 35px;
+    border-radius: 24px;
+  }
+
+  // Background color variants
+  &.card-item__inner--primary {
+    background: linear-gradient(135deg, $color-primary 0%, #064d56 100%);
+  }
+
+  &.card-item__inner--secondary {
+    background: $color-accent;
+  }
+
+  // Shine effect on active card
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba($color-white, 0.2),
+      transparent
+    );
+    opacity: 0;
+    transition: opacity 0.6s ease;
+  }
+}
+
+// Card Text
+.card-item__text {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.3;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+  letter-spacing: 0.5px;
+
+  @media (min-width: $bp-tablet) {
+    font-size: 20px;
+  }
+
+  @media (min-width: $bp-desktop) {
+    font-size: 22px;
+  }
+
+  .card-item__inner--primary & {
+    color: $color-accent;
+  }
+
+  .card-item__inner--secondary & {
+    color: $color-primary;
+  }
+}
+
+// Card Button
+.card-item__btn {
+  flex-shrink: 0;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+  background: rgba($color-white, 0.2);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  font-size: 24px;
+  line-height: 1;
+
+  @media (min-width: $bp-tablet) {
+    width: 56px;
+    height: 56px;
+    font-size: 28px;
+  }
+
+  @media (min-width: $bp-desktop) {
+    width: 60px;
+    height: 60px;
+    font-size: 32px;
+  }
+
+  &:hover {
+    background: rgba($color-white, 0.3);
+    transform: scale(1.1);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  .card-item__inner--primary & {
+    color: $color-accent;
+  }
+
+  .card-item__inner--secondary & {
+    color: $color-primary;
+  }
+}
+
+// Card Icon
+.card-item__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  font-weight: 300;
+  letter-spacing: 1px;
+}

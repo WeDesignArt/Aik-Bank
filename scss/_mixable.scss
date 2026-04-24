@@ -1,0 +1,270 @@
+@use "sass:math";
+@use "sass:string";
+@use "sass:meta";
+@use "sass:list";
+/* fonts */
+/* @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800'); */
+
+/*  mixins start */
+
+// Mixin for applying a Google Variable Font (assumes font is already linked in HTML head)
+@mixin variable-font(
+  $font-family: "Outfit",
+  // The name of the font (e.g., 'Inter')
+  $font-weight: null,
+  // Default font weight (optional)
+  $font-style: null,
+  // Default font style (optional)
+  $font-stretch: null,
+  // Default font stretch (optional)
+  $other-axes: () // Map of other font-variation-settings (optional)
+) {
+  font-family: $font-family, sans-serif; // Fallback to sans-serif
+
+  // Set basic font properties if provided
+  @if $font-weight != null {
+    font-weight: $font-weight;
+  }
+  @if $font-style != null {
+    font-style: $font-style;
+  }
+  @if $font-stretch != null {
+    font-stretch: $font-stretch;
+  }
+
+  // Build font-variation-settings string
+  $font-variation-settings: ();
+
+  @if $font-weight != null {
+    $font-variation-settings: list.append(
+      $font-variation-settings,
+      ("wght" $font-weight),
+      comma
+    );
+  }
+
+  // Add other axes from the $other-axes map
+  @each $axis, $value in $other-axes {
+    $font-variation-settings: list.append(
+      $font-variation-settings,
+      ($axis $value),
+      comma
+    );
+  }
+
+  // Output font-variation-settings if there are any axes to set
+  @if list.length($font-variation-settings) > 0 {
+    font-variation-settings: list.join(
+      $font-variation-settings,
+      (),
+      comma
+    ); // Ensure a space isn't accidentally added
+  }
+}
+
+/* letter spacing  */
+@mixin ls($spacing) {
+  letter-spacing: $spacing;
+  margin-right: -$spacing;
+}
+
+/* Mixin to prefix a property
+@author Hugo Giraudel
+@param {String} $property - Property name
+@param {*} $value - Property value
+@param {List} $prefixes (()) - List of prefixes to print 
+usage: .selector { @include prefix(transform, rotate(45deg), 'webkit' 'ms'); }*/
+@mixin prefix($property, $value, $prefixes: ()) {
+  @each $prefix in $prefixes {
+    #{'-' + $prefix + '-' + $property}: $value;
+  }
+
+  // Output standard non-prefixed declaration
+  #{$property}: $value;
+}
+
+/* usage: .foo { @include border-radius(10px)} */
+@mixin border-radius($radius) {
+  @include prefix(border-radius, $radius, "webkit" "ms");
+}
+
+@mixin box-shadow($shadow...) {
+  @include prefix(box-shadow, $shadow, "webkit");
+}
+
+/* / @example scss - Usage
+/   .foo {
+/     @include transition(all 0.3s ease-in 1s);
+/   }
+/ @example css - Result
+/   .foo {
+/     -webkit-transition: all 0.3s ease-in 1s;
+/     transition: all 0.3s ease-in 1s;
+/   } */
+@mixin transition($args...) {
+  @include prefix(transition, $args, "webkit");
+}
+
+@mixin backdrop-filter($argument...) {
+  @include prefix(backdrop-filter, $argument, "webkit");
+}
+
+@mixin keyframes($animation-name) {
+  @-webkit-keyframes #{$animation-name} {
+    @content;
+  }
+
+  @keyframes #{$animation-name} {
+    @content;
+  }
+}
+
+@mixin animation($args...) {
+  @include prefix(animation, $args, "webkit");
+}
+
+/* / @example scss - Usage
+/   .foo {
+/     @include transform(scale(1.2));
+/   }
+/ @example css - Result
+/   .foo {
+/  		-webkit-tranform: scale(1.2);
+/     	tranform: scale(1.2);
+/   } */
+@mixin transform($val) {
+  @include prefix(transform, $val, "webkit");
+}
+
+@mixin safariFix {
+  transform-style: preserve-3d;
+  -webkit-font-smoothing: antialiased;
+  will-change: transform;
+}
+
+/* / Given the location of a webfont, will generate a font-face declaration with multiple file formats.
+/ @access public
+/ @param {String} $font-name - Font family name
+/ @param {String} $file-name - File name (no extension)
+/ @param {String | Number} $weight [normal] - Font weight
+/ @param {String} $style [normal] - Font style
+/ @example scss - Usage
+/   @include font-face('gotham', '/fonts/gotham', normal, 400); */
+@mixin font-face(
+  $font-name,
+  $file-name,
+  $style: normal,
+  $weight: normal,
+  $display: swap
+) {
+  @font-face {
+    font-family: string.quote($font-name);
+    src: url($file-name + ".eot");
+    src: url($file-name + ".eot?#iefix") format("embedded-opentype"),
+      url($file-name + ".woff2") format("woff2"),
+      url($file-name + ".woff") format("woff"),
+      url($file-name + ".ttf") format("truetype"),
+      url($file-name + ".svg##{$font-name}") format("svg");
+    font-style: $style;
+    font-weight: $weight;
+    font-display: $display;
+  }
+}
+
+/*
+// font size mixin convert px to rem
+// usage: .foo { @include font-size(14px)} */
+$base_font_size: 16px;
+
+@mixin font-size($font_size) {
+  /* 
+	font-size: $font_size; //pixel fallback 
+	*/
+  font-size: math.div($font_size, $base_font_size) * 1rem;
+}
+
+@mixin width_clear {
+  clear: both;
+  display: block;
+  height: auto;
+  overflow: hidden;
+}
+
+@mixin list_clear {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+@mixin font_normal {
+  font-style: normal;
+  font-weight: normal;
+}
+
+// tranistion delay loop
+@for $i from 0 through 20 {
+  .sm_offcanvas_wrapper.active
+    .sm_offcanvas_extended
+    ul
+    li:nth-child(#{$i + 1}) {
+    transition-delay: 0.08s * $i;
+  }
+
+  .off_canvas.active .menuNav li:nth-child(#{$i + 1}) {
+    transition-delay: 0.15s * $i;
+    opacity: 1;
+  }
+}
+
+// utility classes for spacing
+$utilSpace: (
+  "10": 10px,
+  "20": 20px,
+  "30": 30px,
+  "40": 40px,
+  "50": 50px,
+  "60": 60px,
+  "70": 70px,
+  "80": 80px,
+  "90": 90px,
+  "100": 100px,
+  "110": 110px,
+  "120": 120px,
+  "130": 130px,
+  "140": 140px,
+  "150": 150px,
+  "160": 160px,
+  "170": 170px,
+  "180": 180px,
+  "190": 190px,
+  "200": 200px,
+);
+
+// each loop for creating helping classes
+@each $key, $val in $utilSpace {
+  .mt_#{$key} {
+    margin-top: $val;
+  }
+
+  .mb_#{$key} {
+    margin-bottom: $val;
+  }
+
+  .mtb_#{$key} {
+    margin-bottom: $val;
+    margin-top: $val;
+  }
+
+  .pt_#{$key} {
+    padding-top: $val;
+  }
+
+  .pb_#{$key} {
+    padding-bottom: $val;
+  }
+
+  .ptb_#{$key} {
+    padding-bottom: $val;
+    padding-top: $val;
+  }
+}
