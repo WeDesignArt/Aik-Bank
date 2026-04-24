@@ -124,20 +124,6 @@ footer.aik-footer {
   width: 100%;
 }
 
-/* ── Shared Inner Container ───────────────────────────────── */
-.aik-footer__container {
-  margin: 0 auto;
-  max-width: 1400px;
-  padding-left: 2vw;
-  padding-right: 2vw;
-}
-
-@media (max-width: 767.98px) {
-  .aik-footer__container {
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-}
 
 
 /* ════════════════════════════════════════════════════════════
