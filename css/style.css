@@ -1144,6 +1144,7 @@ footer.aik-footer {
   overflow: hidden;
   margin-top: 60px;
   position: relative;
+  
 }
 
 /* TRACK CENTER ALIGN */
@@ -1172,7 +1173,6 @@ footer.aik-footer {
       background: #f7f8f9;
       border-radius: 20px;
       padding: 30px 28px;
-      height: 320px;
       display: flex;
       overflow: hidden;
       flex-direction: column;
@@ -1180,6 +1180,7 @@ footer.aik-footer {
       transition: all 0.4s ease;
       border: 1px solid #eee;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+      height: 320px; 
     }
  
 
@@ -1192,7 +1193,7 @@ footer.aik-footer {
     .cf-top {
       display: flex;
       justify-content: space-between;
-      align-items: flex-start;
+      align-items: self-end;
       margin-bottom: 18px;
       padding-bottom: 16px;
       border-bottom: 1px solid #010101;
@@ -1213,8 +1214,9 @@ footer.aik-footer {
 
     .cf-stars {
       color: #F5CE1A;
-      font-size: 16px;
-      letter-spacing: 2px;
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: 5px;
       flex-shrink: 0;
     }
 

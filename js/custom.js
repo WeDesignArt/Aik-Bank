@@ -180,7 +180,7 @@
 
       // Auto play - medium speed
       autoplay: {
-        delay: 3000,
+        delay: 300000,
         disableOnInteraction: false,
         pauseOnMouseEnter: true,
       },
