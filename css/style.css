@@ -501,7 +501,7 @@ footer.aik-footer {
 .pe-title {
   font-size: clamp(1.9rem, 3.8vw, 2.75rem);
   font-weight: 800;
-  color: #0d0d0d;
+  color: #065258;
   line-height: 1.2;
   margin-bottom: 18px;
 }
@@ -573,6 +573,7 @@ footer.aik-footer {
 
 .pe-card__desc {
   font-size: 0.756rem;
+  /* font-size: calc(0.8rem + 0.5vw); */
   color: rgba(255, 255, 255, 0.82);
  
   margin: 0 0 28px;
