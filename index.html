@@ -364,7 +364,7 @@
         <div class="container">
 
           <!-- TEXT OVER IMAGE -->
-          <div class="pt-header">
+          <div class="pt-header" data-aos="fade-up">
             <h2 class="pt-title">Spend Smarter, the Halal Way</h2>
 
             <p class="pt-subtitle">
@@ -375,12 +375,12 @@
           </div>
 
           <!-- IMAGE CENTER -->
-          <div class="pt-card_img">
+          <div class="pt-card_img" data-aos="fade-up" data-aos-delay="100">
             <img src="images/pt-card_image.png" alt="spend smarter">
           </div>
 
           <!-- BUTTONS -->
-          <div class="pt-cta">
+          <div class="pt-cta" data-aos="fade-up" data-aos-delay="200">
             <button class="pt-btn pt-btn--primary">Physical Card</button>
             <button class="pt-btn pt-btn--secondary">Virtual Card</button>
           </div>
@@ -395,7 +395,7 @@
         <div class="container">
 
           <!-- Section Header -->
-          <div class="pe-header">
+          <div class="pe-header" data-aos="fade-up">
             <h2 class="pe-title">Enjoy a Better Payment Experience</h2>
             <p class="pe-subtitle">BankIslami, Pakistan's first Islamic digital banking platform, allows you to open an
               Asaan Digital Account (ADA) in minutes with no hassle, no paperwork. Simply download aik from the Apple
@@ -403,7 +403,7 @@
           </div>
 
           <!-- Stacked Card Deck -->
-          <div class="pe-deck" id="peDeck">
+          <div class="pe-deck" id="peDeck" data-aos="fade-up" data-aos-delay="100">
 
             <!-- Card 1 — Send Money (active by default) -->
             <div class="pe-card pe-card--active" data-name="Send Money">
@@ -413,7 +413,7 @@
                   <p class="pe-card__desc">Start your financial journey with Aik Digital in just a few simple steps. Our
                     seamless, fully digital onboarding process is designed to save your time and remove the hassle of
                     traditional banking. You can open and manage your account without any paperwork, long queues, or
-                    unnecessary waiting times.<br><br>Everything is done online in a secure and user-friendly
+                    unnecessary waiting times.<br>Everything is done online in a secure and user-friendly
                     environment, ensuring a smooth experience from registration to account activation. With quick
                     verification and instant access, Aik Digital empowers you to take control of your finances anytime,
                     anywhere.</p>
@@ -424,7 +424,7 @@
                 </div>
               </div>
               <div class="pe-card__collapsed">
-                <span class="pe-card__label">Send Money</span>
+                <h2 class="pe-card__label">Send Money</h2>
               </div>
               <button class="pe-card__toggle" aria-label="Toggle Send Money">
                 <i class="bi bi-dash-lg"></i>
@@ -446,7 +446,7 @@
                 </div>
               </div>
               <div class="pe-card__collapsed">
-                <span class="pe-card__label">Mobile Load</span>
+                <h2 class="pe-card__label">Mobile Load</h2>
               </div>
               <button class="pe-card__toggle" aria-label="Toggle Mobile Load">
                 <i class="bi bi-plus-lg"></i>
@@ -468,7 +468,7 @@
                 </div>
               </div>
               <div class="pe-card__collapsed">
-                <span class="pe-card__label">Aik Deen</span>
+                <h2 class="pe-card__label">Aik Deen</h2>
               </div>
               <button class="pe-card__toggle" aria-label="Toggle Aik Deen">
                 <i class="bi bi-plus-lg"></i>
@@ -490,7 +490,7 @@
                 </div>
               </div>
               <div class="pe-card__collapsed">
-                <span class="pe-card__label">Cards</span>
+                <h2 class="pe-card__label">Cards</h2>
               </div>
               <button class="pe-card__toggle" aria-label="Toggle Cards">
                 <i class="bi bi-plus-lg"></i>
@@ -512,36 +512,14 @@
                 </div>
               </div>
               <div class="pe-card__collapsed">
-                <span class="pe-card__label">Bill Payments</span>
+                <h2 class="pe-card__label">Bill Payments</h2>
               </div>
               <button class="pe-card__toggle" aria-label="Toggle Bill Payments">
                 <i class="bi bi-plus-lg"></i>
               </button>
             </div>
-
-            <!-- Card 6 — Other Payments -->
-            <div class="pe-card pe-card--inactive" data-name="Other Payments">
-              <div class="pe-card__expanded">
-                <div class="pe-card__text">
-                  <h3 class="pe-card__heading">Other<br>Payments</h3>
-                  <p class="pe-card__desc">Make any payment conveniently through Aik Digital. From insurance premiums to
-                    government services, everything is at your fingertips — a truly all-in-one payment solution for your
-                    modern lifestyle.</p>
-                  <a href="#" class="pe-card__cta">Read More</a>
-                </div>
-                <div class="pe-card__visual">
-                  <img src="images/payment-experience.png" alt="Other Payments">
-                </div>
-              </div>
-              <div class="pe-card__collapsed">
-                <span class="pe-card__label">Other Payments</span>
-              </div>
-              <button class="pe-card__toggle" aria-label="Toggle Other Payments">
-                <i class="bi bi-plus-lg"></i>
-              </button>
-            </div>
-
-            <!-- Card 7 — Takaful -->
+            
+             <!-- Card 7 — Takaful -->
             <div class="pe-card pe-card--inactive" data-name="Takaful">
               <div class="pe-card__expanded">
                 <div class="pe-card__text">
@@ -556,36 +534,41 @@
                 </div>
               </div>
               <div class="pe-card__collapsed">
-                <span class="pe-card__label">Takaful</span>
+                <h2 class="pe-card__label">Takaful</h2>
               </div>
               <button class="pe-card__toggle" aria-label="Toggle Takaful">
                 <i class="bi bi-plus-lg"></i>
               </button>
             </div>
 
-            <!-- Card 8 — Mini App -->
-            <div class="pe-card pe-card--inactive" data-name="Mini App">
+            <!-- Card 6 — Other Payments -->
+            <!-- <div class="pe-card pe-card--inactive" data-name="Other Payments">
               <div class="pe-card__expanded">
                 <div class="pe-card__text">
-                  <h3 class="pe-card__heading">Mini App</h3>
-                  <p class="pe-card__desc">Access a world of third-party services directly within Aik Digital through
-                    our expanding Mini App ecosystem. Shop, book, and transact without ever leaving the app — everything
-                    in one place.</p>
+                  <h3 class="pe-card__heading">Other<br>Payments</h3>
+                  <p class="pe-card__desc">Make any payment conveniently through Aik Digital. From insurance premiums to
+                    government services, everything is at your fingertips — a truly all-in-one payment solution for your
+                    modern lifestyle.</p>
                   <a href="#" class="pe-card__cta">Read More</a>
                 </div>
                 <div class="pe-card__visual">
-                  <img src="images/payment-experience.png" alt="Mini App">
+                  <img src="images/payment-experience.png" alt="Other Payments">
                 </div>
               </div>
               <div class="pe-card__collapsed">
-                <span class="pe-card__label">Mini App</span>
+                <h2 class="pe-card__label">Other Payments</h2>
               </div>
-              <button class="pe-card__toggle" aria-label="Toggle Mini App">
+              <button class="pe-card__toggle" aria-label="Toggle Other Payments">
                 <i class="bi bi-plus-lg"></i>
               </button>
-            </div>
+            </div> -->
 
-          </div><!-- /.pe-deck -->
+           
+
+
+
+          </div>
+          <!-- /.pe-deck -->
         </div><!-- /.container -->
       </section>
       <!-- Payment Experience end -->
@@ -596,13 +579,13 @@
       <section class="our-culture">
         <div class="container">
           <div class="row align-items-center our-culture__gap">
-            <div class="col-md-6 col-12">
+            <div class="col-md-6 col-12" data-aos="fade-right">
               <div class="img-culture">
                 <img src="/images/our-culture.jpg" class="img-fluid" alt="Office-Culture">
               </div>
             </div>
 
-            <div class="col-md-5 col-12 oc-content">
+            <div class="col-md-5 col-12 oc-content" data-aos="fade-left">
               <h2 class="oc-header"> Driven by Ethics, Led by Innovation.</h2>
               <p>Our team is a collective of visionaries, Shariah scholars, and tech-disruptors. We believe that
                 financial technology should be a force for equity. At aik, we don't just build features; we build trust
@@ -624,11 +607,11 @@
 
       <!-- Trusted Partners Marquee -->
       <section class="partners-section">
-        <div class="container">
+        <div class="container" data-aos="fade-up">
           <h2 class="partners-title">Some of Our <span>Trusted Partner's</span></h2>
         </div>
 
-        <div class="partners-marquee">
+        <div class="partners-marquee" data-aos="fade-in" data-aos-delay="100">
           <div class="partners-track" id="partnersTrack">
             <!-- set 1 -->
             <img src="images/outfitter-logo.png" alt="Outfitters" class="partner-logo">
@@ -662,7 +645,7 @@
         <div class="container">
 
           <!-- HEADER -->
-          <div class="cf-header text-center">
+          <div class="cf-header text-center" data-aos="fade-up">
             <h2>Trusted by Thousands,<br> Perfected for You.</h2>
             <p>Discover how Aik Digital is transforming the way
               people manage their finances with simplicity, security,
@@ -672,7 +655,7 @@
           </div>
 
           <!-- SWIPER SLIDER -->
-          <div class="cf-wrapper">
+          <div class="cf-wrapper" data-aos="fade-up" data-aos-delay="100">
             <div class="swiper" id="testimonialSwiper">
               <div class="swiper-wrapper">
 
@@ -778,11 +761,11 @@
         <div class="container">
 
           <!-- Rounded card — background lives here, not on the section -->
-          <div class="mob-app__card">
+          <div class="mob-app__card" data-aos="zoom-in">
 
             <!-- Decorative vector clipped inside the card -->
             <div class="mob-app__vector">
-              <img src="images/mob-app-vector-cut.png" alt="" aria-hidden="true">
+              <img src="images/mob-app-vector-cut-yellow.png" alt="" aria-hidden="true">
             </div>
 
             <div class="row mob-app__inner align-items-center justify-content-center g-4">
@@ -811,7 +794,10 @@
               </div>
 
             </div>
-          </div><!-- /.mob-app__card -->
+          </div>
+
+
+          <!-- /.mob-app__card -->
 
         </div>
       </section>
@@ -825,7 +811,7 @@
         <div class="container">
 
           <!-- Section Header -->
-          <div class="md-news-header">
+          <div class="md-news-header" data-aos="fade-up">
             <h2 class="md-news-title">Our Media News</h2>
             <p class="md-news-subtitle">Stay informed with the latest updates, expert insights, and practical guides on
               digital finance and Islamic banking. From everyday money tips to Shariah-compliant financial knowledge,
@@ -840,7 +826,7 @@
             <div class="row g-4">
 
               <!-- CARD 1 -->
-              <div class="col-lg-4 col-md-6">
+              <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
                 <div class="md-news__card">
                   <img src="images/md-news-1.png" alt="news">
 
@@ -867,7 +853,7 @@
               </div>
 
               <!-- CARD 2 -->
-              <div class="col-lg-4 col-md-6">
+              <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
                 <div class="md-news__card">
                   <img src="images/md-news-2.png" alt="news">
 
@@ -889,7 +875,7 @@
               </div>
 
               <!-- CARD 3 -->
-              <div class="col-lg-4 col-md-6">
+              <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
                 <div class="md-news__card">
                   <img src="images/md-news-3.png" alt="news">
 
@@ -960,7 +946,7 @@
           <div class="aik-footer__grid">
 
             <!-- Column 1 — Brand & About -->
-            <div class="aik-footer__col aik-footer__col--brand">
+            <div class="aik-footer__col aik-footer__col--brand" >
               <div class="aik-footer__logo">
                 <img src="images/footer-aik-logo.png" alt="AIK BankIslami" />
               </div>
@@ -971,7 +957,7 @@
             </div>
 
             <!-- Column 2 — Quick Links -->
-            <div class="aik-footer__col">
+            <div class="aik-footer__col" >
               <h6 class="aik-footer__heading">Quick Links</h6>
               <ul class="aik-footer__links">
                 <li><a href="index.html">Home</a></li>
@@ -983,7 +969,7 @@
             </div>
 
             <!-- Column 3 — Features -->
-            <div class="aik-footer__col">
+            <div class="aik-footer__col" >
               <h6 class="aik-footer__heading">Features</h6>
               <ul class="aik-footer__links">
                 <li><a href="javascript:void(0);">Digital Account Opening</a></li>
@@ -995,7 +981,7 @@
             </div>
 
             <!-- Column 4 — Useful Links -->
-            <div class="aik-footer__col">
+            <div class="aik-footer__col" >
               <h6 class="aik-footer__heading">Useful Links</h6>
               <ul class="aik-footer__links">
                 <li><a href="javascript:void(0);">Disclaimer</a></li>
@@ -1005,7 +991,7 @@
             </div>
 
             <!-- Column 5 — Download App + Social -->
-            <div class="aik-footer__col aik-footer__col--app">
+            <div class="aik-footer__col aik-footer__col--app" >
               <h6 class="aik-footer__heading">Download App</h6>
               <div class="aik-footer__badges">
                 <a href="javascript:void(0);" class="aik-footer__badge">
@@ -1064,159 +1050,10 @@
   <script src="js/vendor.js"></script>
   <script src="js/custom.js"></script>
   <script src="js/app.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
   <script>
-    // Wait for the window 'load' event to ensure all images and vendor.js are ready
-    window.addEventListener('load', () => {
-
-      // 1. Register Plugins (Bundled in your vendor.js via Gulp)
-      gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
-
-      // 2. Sync ScrollTrigger with your global Lenis instance
-      if (typeof window.lenis !== 'undefined') {
-        window.lenis.on("scroll", ScrollTrigger.update);
-        gsap.ticker.add((time) => {
-          window.lenis.raf(time * 1000);
-        });
-      }
-
-      // 3. Variables for the "One-Way Jump"
-      let hasJumped = false;
-      const introSection = document.querySelector(".intro_section");
-
-      // 4. The Jump Logic
-      const handleInitialScroll = (e) => {
-        // Trigger jump only if at the top and hasn't happened yet
-        if (!hasJumped && window.scrollY < 50 && introSection) {
-          hasJumped = true;
-
-          // Prevent native scroll jitter
-          if (e && e.cancelable) e.preventDefault();
-
-          gsap.to(window, {
-            scrollTo: {
-              y: introSection,
-              autoKill: false,
-              offsetY: 0 // Change to 80 if you have a fixed header
-            },
-            duration: 1.5,
-            ease: "power4.inOut",
-            onStart: () => {
-              // Stop Lenis from fighting the GSAP scroll
-              if (window.lenis) window.lenis.stop();
-            },
-            onComplete: () => {
-              // Resume Lenis and kill jump listeners
-              if (window.lenis) window.lenis.start();
-              window.removeEventListener("wheel", handleInitialScroll);
-              window.removeEventListener("touchmove", handleInitialScroll);
-            }
-          });
-        }
-      };
-
-      // 5. Attach Interaction Listeners
-      window.addEventListener("wheel", handleInitialScroll, { passive: false });
-      window.addEventListener("touchmove", handleInitialScroll, { passive: false });
-
-      // 6. Revolut-Style Hero Entrance Animations
-      const heroTl = gsap.timeline({ delay: 0.2 });
-
-      heroTl.from(".home_hero_wrapper", {
-        scale: 1.05,
-        opacity: 0,
-        duration: 1.5,
-        ease: "power3.out"
-      })
-        .from(".home_main_title", {
-          y: 60,
-          opacity: 0,
-          duration: 1.2,
-          ease: "power3.out"
-        }, "-=1.0")
-        .from(".hero_main_text p", {
-          y: 40,
-          opacity: 0,
-          duration: 1,
-          ease: "power3.out"
-        }, "-=0.8")
-        .from(".hero_main_text .btn_fill", {
-          y: 30,
-          opacity: 0,
-          duration: 1,
-          ease: "power3.out"
-        }, "-=0.6");
-
-      // 7. Hero Image Parallax
-      if (document.querySelector(".hero_img")) {
-        gsap.to(".hero_img", {
-          y: -100,
-          ease: "none",
-          scrollTrigger: {
-            trigger: ".home_hero_wrapper",
-            start: "top top",
-            end: "bottom top",
-            scrub: 1
-          },
-        });
-      }
-
-      // 8. Feature Cards & Hover Effects
-      document.querySelectorAll(".feature_card_single").forEach((card, index) => {
-        gsap.from(card, {
-          opacity: 0,
-          y: 50,
-          rotation: 2,
-          duration: 1,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: card,
-            start: "top 85%",
-            toggleActions: "play none none none",
-          },
-        });
-
-        card.addEventListener("mouseenter", () => {
-          gsap.to(card, { y: -10, duration: 0.4, ease: "power2.out" });
-        });
-        card.addEventListener("mouseleave", () => {
-          gsap.to(card, { y: 0, duration: 0.4, ease: "power2.out" });
-        });
-      });
-
-      // 9. About Section Timeline
-      const aboutTl = gsap.timeline({
-        scrollTrigger: {
-          trigger: ".home_about_section",
-          start: "top 80%",
-        }
-      });
-
-      aboutTl.from(".home_about_section_media figure", {
-        clipPath: "inset(0% 0% 0% 100%)",
-        duration: 1.2,
-        ease: "power3.inOut"
-      })
-        .from(".home_about_section_content", {
-          opacity: 0,
-          x: -60,
-          duration: 1,
-        }, "-=0.8")
-        .from(".mb_ui", {
-          opacity: 0,
-          filter: "blur(10px)",
-          scale: 0.8,
-          duration: 0.8,
-        }, "-=0.6");
-
-      // Refresh ScrollTrigger to catch new heights after loading
-      ScrollTrigger.refresh();
-    });
-
-    // Reset scroll to top on refresh
-    window.onbeforeunload = function () {
-      window.scrollTo(0, 0);
-    };
+   
   </script>
 
 

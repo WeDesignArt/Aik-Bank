@@ -514,7 +514,7 @@ footer.aik-footer {
 /* ── Deck container ─────────────────────────────────────────── */
 .pe-deck {
   display: flex;
-  height: 520px;
+  height: 620px;
   border-radius: 18px;
   overflow: hidden;
 }
@@ -564,7 +564,7 @@ footer.aik-footer {
 
 /* odd (green) card defaults */
 .pe-card__heading {
-  font-size: clamp(2.4rem, 3.8vw, 3.4rem);
+  font-size: 4.5rem;
   font-weight: 800;
   color: #F5CE1A;
   line-height: 1.08;
@@ -574,14 +574,14 @@ footer.aik-footer {
 .pe-card__desc {
   font-size: 0.82rem;
   color: rgba(255, 255, 255, 0.82);
-  line-height: 1.78;
+ 
   margin: 0 0 28px;
   flex: 1;
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 9;
-  line-clamp: 9;
   -webkit-box-orient: vertical;
+  line-clamp: 9;
 }
 
 .pe-card__cta {
@@ -651,13 +651,13 @@ footer.aik-footer {
   align-items: center;
   justify-content: flex-end;
   /* padding-top: 1px; */
-  padding-bottom: 83px;
+  padding-bottom: 100px;
 }
 
 .pe-card__label {
   writing-mode: vertical-rl;
   transform: rotate(180deg);
-  font-size: 1.8rem;
+  font-size: 2.4rem;
   font-weight: 900 !important;
   white-space: nowrap;
   letter-spacing: 0.025em;
@@ -675,19 +675,18 @@ footer.aik-footer {
 
 /* ── Toggle button (+ / −) ──────────────────────────────────── */
 .pe-card__toggle {
-  position: absolute;
-  bottom: 22px;
-  right: 22px;
-  /* always right-anchored */
-  width: 42px;
-  height: 42px;
+    position: absolute;
+    bottom: 22px;
+    right: 22px;
+    width: 62px;
+    height: 62px;
   border-radius: 50%;
   border: none;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.1rem;
+  font-size: 2rem;
   z-index: 20;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.18);
   transition: box-shadow 0.2s, transform 0.2s;
@@ -1357,7 +1356,8 @@ footer.aik-footer {
 }
 
 .mob-app__heading span {
-  color: #F3C901;
+  /* color: #F3C901; */
+  color: #056B73;
 }
 
 /* App store badges */

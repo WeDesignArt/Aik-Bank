@@ -85,6 +85,8 @@
             tl.to(target.querySelector('.pe-card__collapsed'), { opacity: 0, duration: 0.18, ease: 'power2.out' }, 0);
             tl.to(target, { height: h.expanded, duration: 0.5, ease: 'power3.inOut' }, 0);
             tl.to(target.querySelector('.pe-card__expanded'), { opacity: 1, duration: 0.25 }, 0.28);
+            /* text fade-up animation */
+            tl.fromTo(target.querySelector('.pe-card__text'), { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.9, ease: 'power2.out' }, 0.35);
           } else {
             var w = getWidths();
             /* collapse prev */
@@ -95,6 +97,8 @@
             tl.to(target.querySelector('.pe-card__collapsed'), { opacity: 0, duration: 0.18, ease: 'power2.out' }, 0);
             tl.to(target, { width: w.expanded, duration: 0.55, ease: 'power3.inOut' }, 0);
             tl.to(target.querySelector('.pe-card__expanded'), { opacity: 1, duration: 0.25 }, 0.32);
+            /* text fade-up animation */
+            tl.fromTo(target.querySelector('.pe-card__text'), { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.9, ease: 'power2.out' }, 0.4);
           }
 
           /* swap state classes & toggle icons immediately */
@@ -229,4 +233,165 @@
       },
 
     });
+
+    // AOS Animation 
+
+     // Initialize AOS
+    AOS.init({
+      duration: 800,
+      once: true,
+      offset: 50
+    });
+
+    // Wait for the window 'load' event to ensure all images and vendor.js are ready
+    window.addEventListener('load', () => {
+
+      // 1. Register Plugins (Bundled in your vendor.js via Gulp)
+      gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+
+      // 2. Sync ScrollTrigger with your global Lenis instance
+      if (typeof window.lenis !== 'undefined') {
+        window.lenis.on("scroll", ScrollTrigger.update);
+        gsap.ticker.add((time) => {
+          window.lenis.raf(time * 1000);
+        });
+      }
+
+      // 3. Variables for the "One-Way Jump"
+      let hasJumped = false;
+      const introSection = document.querySelector(".intro_section");
+
+      // 4. The Jump Logic
+      const handleInitialScroll = (e) => {
+        // Trigger jump only if at the top and hasn't happened yet
+        if (!hasJumped && window.scrollY < 50 && introSection) {
+          hasJumped = true;
+
+          // Prevent native scroll jitter
+          if (e && e.cancelable) e.preventDefault();
+
+          gsap.to(window, {
+            scrollTo: {
+              y: introSection,
+              autoKill: false,
+              offsetY: 0 // Change to 80 if you have a fixed header
+            },
+            duration: 1.5,
+            ease: "power4.inOut",
+            onStart: () => {
+              // Stop Lenis from fighting the GSAP scroll
+              if (window.lenis) window.lenis.stop();
+            },
+            onComplete: () => {
+              // Resume Lenis and kill jump listeners
+              if (window.lenis) window.lenis.start();
+              window.removeEventListener("wheel", handleInitialScroll);
+              window.removeEventListener("touchmove", handleInitialScroll);
+            }
+          });
+        }
+      };
+
+      // 5. Attach Interaction Listeners
+      window.addEventListener("wheel", handleInitialScroll, { passive: false });
+      window.addEventListener("touchmove", handleInitialScroll, { passive: false });
+
+      // 6. Revolut-Style Hero Entrance Animations
+      const heroTl = gsap.timeline({ delay: 0.2 });
+
+      heroTl.from(".home_hero_wrapper", {
+        scale: 1.05,
+        opacity: 0,
+        duration: 1.5,
+        ease: "power3.out"
+      })
+        .from(".home_main_title", {
+          y: 60,
+          opacity: 0,
+          duration: 1.2,
+          ease: "power3.out"
+        }, "-=1.0")
+        .from(".hero_main_text p", {
+          y: 40,
+          opacity: 0,
+          duration: 1,
+          ease: "power3.out"
+        }, "-=0.8")
+        .from(".hero_main_text .btn_fill", {
+          y: 30,
+          opacity: 0,
+          duration: 1,
+          ease: "power3.out"
+        }, "-=0.6");
+
+      // 7. Hero Image Parallax
+      if (document.querySelector(".hero_img")) {
+        gsap.to(".hero_img", {
+          y: -100,
+          ease: "none",
+          scrollTrigger: {
+            trigger: ".home_hero_wrapper",
+            start: "top top",
+            end: "bottom top",
+            scrub: 1
+          },
+        });
+      }
+
+      // 8. Feature Cards & Hover Effects
+      document.querySelectorAll(".feature_card_single").forEach((card, index) => {
+        gsap.from(card, {
+          opacity: 0,
+          y: 50,
+          rotation: 2,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: card,
+            start: "top 85%",
+            toggleActions: "play none none none",
+          },
+        });
+
+        card.addEventListener("mouseenter", () => {
+          gsap.to(card, { y: -10, duration: 0.4, ease: "power2.out" });
+        });
+        card.addEventListener("mouseleave", () => {
+          gsap.to(card, { y: 0, duration: 0.4, ease: "power2.out" });
+        });
+      });
+
+      // 9. About Section Timeline
+      const aboutTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".home_about_section",
+          start: "top 80%",
+        }
+      });
+
+      aboutTl.from(".home_about_section_media figure", {
+        clipPath: "inset(0% 0% 0% 100%)",
+        duration: 1.2,
+        ease: "power3.inOut"
+      })
+        .from(".home_about_section_content", {
+          opacity: 0,
+          x: -60,
+          duration: 1,
+        }, "-=0.8")
+        .from(".mb_ui", {
+          opacity: 0,
+          filter: "blur(10px)",
+          scale: 0.8,
+          duration: 0.8,
+        }, "-=0.6");
+
+      // Refresh ScrollTrigger to catch new heights after loading
+      ScrollTrigger.refresh();
+    });
+
+    // Reset scroll to top on refresh
+    window.onbeforeunload = function () {
+      window.scrollTo(0, 0);
+    };
   
