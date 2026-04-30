@@ -126,8 +126,54 @@ jQuery(document).ready(function ($) {
   });
 
   // 9. Initialize AOS (for minor entrance animations)
-  AOS.init({
-    duration: 1200,
-    once: true,
-  });
+  // Wait for Lenis and AOS to be ready
+  function initAOSWithLenis() {
+    if (typeof AOS === "undefined") {
+      console.warn("AOS not loaded yet");
+      return;
+    }
+
+    // Destroy any existing AOS instance to avoid conflicts
+    if (AOS.init && document.body.hasAttribute("data-aos-init")) {
+      // AOS already initialized – we'll re-init with new options
+    }
+
+    // Recommended AOS settings for smooth scroll + visibility on each scroll
+    AOS.init({
+      once: true, // Allow animations to replay when scrolling back up
+      offset: 100, // Trigger offset (px from viewport edge)
+      duration: 1200, // Animation duration
+      easing: "ease-out-quad",
+      delay: 0,
+      startEvent: "DOMContentLoaded",
+      throttleDelay: 99,
+      debounceDelay: 50,
+    });
+
+    // Force AOS to refresh after Lenis scroll events
+    if (window.lenis) {
+      window.lenis.on("scroll", () => {
+        AOS.refresh();
+      });
+    }
+
+    // Also on window scroll fallback
+    window.addEventListener("scroll", () => {
+      AOS.refresh();
+    });
+
+    // Refresh after page load and any content changes
+    window.addEventListener("load", () => {
+      AOS.refresh();
+    });
+
+    console.log("✅ AOS reconfigured with Lenis support");
+  }
+
+  // If document already loaded, run; else wait
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initAOSWithLenis);
+  } else {
+    initAOSWithLenis();
+  }
 });

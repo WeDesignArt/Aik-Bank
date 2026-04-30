@@ -35,8 +35,8 @@
 }
 
 .pt-title {
-  font-size: clamp(2.2rem, 4vw, 3.5rem);
-  font-weight: 800;
+  font-size: clamp(2.2rem, 4vw, 3.75rem);
+  font-weight: 600;
   color: #F5CE1A;
   margin-bottom: 15px;
 }
@@ -51,6 +51,7 @@
   display: flex;
   justify-content: center;
   margin-top: 30px;
+  mix-blend-mode: lighten;
 }
 
 .pt-card_img img {
@@ -499,8 +500,8 @@ footer.aik-footer {
 }
 
 .pe-title {
-  font-size: clamp(1.9rem, 3.8vw, 2.75rem);
-  font-weight: 800;
+  font-size: clamp(1.9rem, 3.8vw, 3.75rem);
+  font-weight: 600;
   color: #065258;
   line-height: 1.2;
   margin-bottom: 18px;
@@ -520,6 +521,25 @@ footer.aik-footer {
 }
 
 /* ── Individual card ────────────────────────────────────────── */
+
+/* pointer-events  */
+/* pointer-events: pointer-events: none; means "ignore clicks on this element". */
+/* 1. Kill the card-level click trap on the active card */
+.pe-card--active {
+  pointer-events: none;
+}
+
+/* 2. Restore clicks for everything inside the expanded content panel */
+.pe-card--active .pe-card__expanded {
+  pointer-events: auto;
+}
+
+/* 3. Restore clicks for the − toggle button */
+.pe-card--active .pe-card__toggle {
+  pointer-events: auto;
+}
+
+
 .pe-card {
   position: relative;
   overflow: hidden;
@@ -833,8 +853,8 @@ footer.aik-footer {
 }
 
 .partners-title {
-  font-size: clamp(1.5rem, 2.6vw, 2rem);
-  font-weight: 700;
+  font-size: clamp(1.5rem, 2.6vw, 2.4rem);
+  font-weight: 600;
   color: #065258;
   text-align: center;
   margin-bottom: 52px;
@@ -938,8 +958,8 @@ footer.aik-footer {
 
 
 .oc-header{
-  font-size: clamp(3.125rem, 4vw, 3.58rem);
-  font-weight: 800;
+  font-size: clamp(3.125rem, 4vw, 3.75rem);
+  font-weight: 600;
   color: #065258;
   line-height: 1.2;
 }
@@ -971,9 +991,9 @@ footer.aik-footer {
    }
 
    .md-news-title{
-    font-size: clamp(1.7rem, 3.8vw, 2.75rem);
-    font-weight: 800;
-    color: #0d0d0d;
+    font-size: clamp(1.7rem, 3.8vw, 3.75rem);
+    font-weight: 600;
+    color: #065258;
     line-height: 1.2;
     margin-bottom: 18px;
    }
@@ -1075,7 +1095,7 @@ footer.aik-footer {
   display: inline-flex;
   font-family: 'Outfit', sans-serif;
   font-size: 15px;
-  font-weight: 700;
+  font-weight: 600;
   gap: 9px;
   height: 52px;
   padding: 0 45px;
@@ -1126,7 +1146,7 @@ footer.aik-footer {
   background: #f3f3f3;
 }
 .cf-header h2{
-  font-size: clamp(3.125rem, 4vw, 3.58rem);
+  font-size: clamp(3.125rem, 4vw, 3.75rem);
   color: transparent;
   font-weight: 600;
   line-height: 1.2;
@@ -1356,11 +1376,13 @@ footer.aik-footer {
   color: #ffffff;
   line-height: 1.25;
   margin-bottom: 36px;
+  text-align: center;
 }
 
 .mob-app__heading span {
-  /* color: #F3C901; */
+ 
   color: #056B73;
+ 
 }
 
 /* App store badges */
