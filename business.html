@@ -260,7 +260,7 @@
         <section class="mobile_track">
           <!-- sticky mobile -->
           <div class="scroll_mobile">
-            <img src="images/business-scroll-mobile.png" alt="mobile" />
+            <img src="images/scroll-mobile.png" alt="mobile" />
           </div>
         </section>
       </section>
@@ -1011,7 +1011,7 @@
   <script src="js/custom.js"></script>
   <script src="js/app.js"></script>
 
-  <script>
+  <!-- <script>
     (function () {
       window.addEventListener('DOMContentLoaded', function () {
         const introSection = document.querySelector('.intro_section');
@@ -1205,6 +1205,239 @@
       });
 
     })();
-  </script>
+  </script> -->
 
-</html>
+<script>
+  (function () {
+  window.addEventListener('load', function () {
+
+    const introSection = document.querySelector('.intro_section');
+    const phoneImg = document.querySelector('.scroll_mobile img');
+    const track = document.querySelector('.mobile_track');
+    let hasJumped = false;
+    let introRevealed = false;
+    let introReverseAnimating = false;
+
+    // Get elements
+    const title = introSection ? introSection.querySelector('.intro_section_title') : null;
+    const paragraph = introSection ? introSection.querySelector('p') : null;
+    const button = introSection ? introSection.querySelector('.btn_fill.dark') : null;
+    const cards = introSection ? gsap.utils.toArray(introSection.querySelectorAll('.features_card_row .img_card')) : [];
+
+    // ---------------- LENIS + SCROLLTRIGGER SYNC ----------------
+    if (window.lenis) {
+      window.lenis.on('scroll', ScrollTrigger.update);
+
+      gsap.ticker.add((time) => {
+        window.lenis.raf(time * 1000);
+      });
+
+      gsap.ticker.lagSmoothing(0);
+    }
+
+    // Function to animate intro content IN
+    function animateIntroIn() {
+      if (introRevealed) return;
+      introRevealed = true;
+      introReverseAnimating = false;
+
+      if (introSection && !introSection.classList.contains('revealed')) {
+        introSection.classList.add('revealed');
+      }
+
+      if (title) gsap.killTweensOf(title);
+      if (paragraph) gsap.killTweensOf(paragraph);
+      if (button) gsap.killTweensOf(button);
+      cards.forEach(card => gsap.killTweensOf(card));
+
+      if (title) gsap.set(title, { opacity: 0, y: 30 });
+      if (paragraph) gsap.set(paragraph, { opacity: 0, y: 30 });
+      if (button) gsap.set(button, { opacity: 0, y: 30 });
+      if (cards.length) gsap.set(cards, { opacity: 0, x: 50 });
+
+      const tl = gsap.timeline();
+      if (title) tl.to(title, { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }, 0);
+      if (paragraph) tl.to(paragraph, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, 0.2);
+      if (button) tl.to(button, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, 0.4);
+      if (cards.length) tl.to(cards, { opacity: 1, x: 0, duration: 1, stagger: 0.15, ease: "power3.out" }, 0.3);
+
+      cards.forEach((card, i) => {
+        gsap.to(card, {
+          yPercent: 4 + (i * 0.5),
+          duration: 2.2,
+          repeat: -1,
+          yoyo: true,
+          ease: "sine.inOut",
+          delay: 0.8
+        });
+      });
+
+      // IMPORTANT REFRESH AFTER LAYOUT SHIFT
+      setTimeout(() => {
+        ScrollTrigger.refresh();
+      }, 1500);
+    }
+
+    // Function to animate intro content OUT
+    function animateIntroOut() {
+      if (!introRevealed || introReverseAnimating) return;
+      introReverseAnimating = true;
+
+      cards.forEach(card => gsap.killTweensOf(card));
+
+      if (title) gsap.killTweensOf(title);
+      if (paragraph) gsap.killTweensOf(paragraph);
+      if (button) gsap.killTweensOf(button);
+      cards.forEach(card => gsap.killTweensOf(card));
+
+      const outTl = gsap.timeline({
+        onComplete: () => {
+          introRevealed = false;
+          introReverseAnimating = false;
+          ScrollTrigger.refresh();
+        }
+      });
+
+      if (title) outTl.to(title, { opacity: 0, y: 30, duration: 0.5, ease: "power2.in" }, 0);
+      if (paragraph) outTl.to(paragraph, { opacity: 0, y: 30, duration: 0.5, ease: "power2.in" }, 0);
+      if (button) outTl.to(button, { opacity: 0, y: 30, duration: 0.5, ease: "power2.in" }, 0);
+      if (cards.length) outTl.to(cards, { opacity: 0, x: 50, duration: 0.6, stagger: 0.05, ease: "power2.in" }, 0);
+    }
+
+    // Move phone image
+    function movePhoneToBottom() {
+      if (!track || !phoneImg) return;
+      const moveDistance = track.clientHeight - phoneImg.clientHeight;
+      gsap.killTweensOf(phoneImg);
+      gsap.to(phoneImg, { y: moveDistance, duration: 1.2, ease: "power2.out" });
+    }
+
+    function resetPhoneToTop() {
+      if (!phoneImg) return;
+      gsap.killTweensOf(phoneImg);
+      gsap.to(phoneImg, { y: 0, duration: 0.8, ease: "power2.out" });
+    }
+
+    // Jump function
+    window.jumpToIntro = function (e) {
+      if (window.scrollY > 50 && hasJumped) return;
+
+      if (!hasJumped) {
+        hasJumped = true;
+        if (e && e.cancelable) e.preventDefault();
+
+        animateIntroIn();
+        movePhoneToBottom();
+
+        if (introSection && window.lenis) {
+          window.lenis.scrollTo(introSection, { duration: 1.4, offset: 0, lock: true });
+        } else if (introSection) {
+          introSection.scrollIntoView({ behavior: "smooth" });
+        }
+      }
+    };
+
+    function onScrollToTop() {
+      if (window.scrollY < 50) {
+        if (hasJumped) {
+          hasJumped = false;
+          animateIntroOut();
+          resetPhoneToTop();
+        }
+      }
+    }
+
+    window.addEventListener('scroll', onScrollToTop);
+
+    window.addEventListener("wheel", function (e) {
+      if (e.deltaY > 0 && window.scrollY < 50 && !hasJumped) window.jumpToIntro(e);
+    }, { passive: false });
+
+    let touchStart = 0;
+    window.addEventListener("touchstart", function (e) {
+      touchStart = e.touches[0].clientY;
+    }, { passive: true });
+
+    window.addEventListener("touchmove", function (e) {
+      const delta = touchStart - e.touches[0].clientY;
+      if (delta > 12 && window.scrollY < 50 && !hasJumped) window.jumpToIntro(e);
+    }, { passive: true });
+
+    window.addEventListener("keydown", function (e) {
+      if ((e.key === "ArrowDown" || e.key === " " || e.key === "Space") && window.scrollY < 50 && !hasJumped) {
+        e.preventDefault();
+        window.jumpToIntro(e);
+      }
+    });
+
+    document.querySelectorAll('.btn_fill.secondary.dark, .btn_fill').forEach(btn => {
+      btn.addEventListener('click', function (e) {
+        if (introSection && !introRevealed && window.scrollY < 200) {
+          e.preventDefault();
+          animateIntroIn();
+
+          setTimeout(function () {
+            if (window.lenis) window.lenis.scrollTo(introSection, { duration: 1 });
+            else introSection.scrollIntoView({ behavior: "smooth" });
+          }, 50);
+        }
+      });
+    });
+
+    // Initial hidden state
+    if (introSection && !introRevealed) {
+      if (title) gsap.set(title, { opacity: 0, y: 30 });
+      if (paragraph) gsap.set(paragraph, { opacity: 0, y: 30 });
+      if (button) gsap.set(button, { opacity: 0, y: 30 });
+      if (cards.length) gsap.set(cards, { opacity: 0, x: 50 });
+    }
+
+    // Hero text fade
+    gsap.timeline({
+      scrollTrigger: {
+        trigger: ".home_hero_wrapper",
+        start: "top top",
+        end: "+=500",
+        scrub: true
+      }
+    })
+      .to(".left_text_block", { x: -150, opacity: 0, scale: 0.95, filter: "blur(4px)" }, 0)
+      .to(".right_text_block", { x: 150, opacity: 0, scale: 0.95, filter: "blur(4px)" }, 0);
+
+    // ---------------- ABOUT SECTION FIXED ----------------
+    const aboutTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".home_about_section",
+        start: "top 80%",
+        toggleActions: "play none none none",
+        invalidateOnRefresh: true
+      }
+    });
+
+    aboutTl
+      .from(".home_about_section_media figure", {
+        clipPath: "inset(0% 0% 0% 100%)",
+        duration: 1.2,
+        ease: "power3.inOut"
+      })
+      .from(".home_about_section_content", {
+        opacity: 0,
+        x: -60,
+        duration: 1,
+        ease: "power3.out"
+      }, "-=0.8")
+      .from(".mb_ui", {
+        opacity: 0,
+        filter: "blur(10px)",
+        scale: 0.8,
+        duration: 0.8,
+        ease: "power2.out"
+      }, "-=0.6");
+
+    // FINAL PAGE REFRESH
+    ScrollTrigger.refresh();
+
+  });
+})();
+</script>
+  </html>
